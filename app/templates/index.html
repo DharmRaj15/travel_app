@@ -1,0 +1,218 @@
+{% extends "base.html" %}
+
+{% block title %} Home Page{% endblock %}
+
+{% block content %}
+
+
+<!-- Carousel Section -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="4000">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{{ url_for('static', filename='img/volvo_9900.jpg') }}" class="d-block w-100"
+                style="height: 400px; object-fit: cover;" alt="Volvo Bus">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='img/wp9185491.jpg') }}" class="d-block w-100"
+                style="height: 400px; object-fit: cover;" alt="Bus Route">
+        </div>
+        <div class="carousel-item">
+            <img src="{{ url_for('static', filename='img/wp10821569.jpg') }}" class="d-block w-100"
+                style="height: 400px; object-fit: cover;" alt="Bus Terminal">
+        </div>
+    </div>
+
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Controls -->
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    </a>
+</div>
+
+<!-- Search Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f6 100%);">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-4">
+                        <h5 class="text-success font-weight-bold mb-4">🔍 Find Your Bus</h5>
+                        <form action="{{ url_for('index') }}" novalidate="novalidate" method="post">
+                            <div class="row">
+                                <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                                    <label class="small text-muted font-weight-bold">From</label>
+                                    <input type="text" class="form-control" name="pickup" id="pickup"
+                                        placeholder="Pickup City" value="Pune" readonly>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                                    <label class="small text-muted font-weight-bold">To</label>
+                                    <input type="text" class="form-control" name="destination" id="destination"
+                                        placeholder="Drop City" value="Bangalore" readonly>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                                    <label class="small text-muted font-weight-bold">Date</label>
+                                    <input type="date" class="form-control" id="travelDate" name="traveldate">
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                                    <label class="small text-muted font-weight-bold">Bus Type</label>
+                                    <select class="form-control" name="bustype">
+                                        <option value="0" selected disabled>Select Bus Type</option>
+                                        {% for b in bus %}
+                                        <option value="{{ b.id }}">{{ b.type }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                                    <label class="small text-muted font-weight-bold">&nbsp;</label>
+                                    <button type="submit" class="btn btn-success form-control font-weight-bold">🔍
+                                        Search</button>
+                                </div>
+
+                                <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
+                                    <label class="small text-muted font-weight-bold">&nbsp;</label>
+                                    <button type="button"
+                                        class="btn btn-outline-success form-control font-weight-bold">⟷ Swap</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Popular Routes Section -->
+<section class="py-4">
+    {% if search_result %}
+    <div class="container text-center">
+        <h4 class="text-success mb-3">🚍 Bus available for ticket booking !</h4>
+        <div class="row">
+            {% for r in routes %}
+            <div class="col-md-12 col-sm-6 mb-3">
+                <div class="card h-100 border-0 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title font-weight-bold">{{ r.origin }} ➔ {{ r.destination }}</h5>
+                        <p class="card-text text-muted">Distance: {{ r.distance_km }} km</p>
+                        <p class="card-text text-muted">Duration: {{ r.estimated_time }}</p>
+                        <a href="#" class="btn btn-success btn-block font-weight-bold">Book Now</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% elif request.method == 'POST' %}
+    <div class="alert alert-danger">
+        No routes found for that selection.
+    </div>
+    {% endif %}
+</section>
+
+<!-- Features Section -->
+<div class="bg-light py-5">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="text-success mb-3">🚌 Welcome to ST&T Bus Services</h2>
+            <p class="lead text-dark mb-4">Your trusted partner for comfortable and affordable bus travel across the
+                country</p>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <span class="badge badge-success p-2">✓ 500+ Routes</span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <span class="badge badge-success p-2">✓ Best Prices</span>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <span class="badge badge-success p-2">✓ 24/7 Support</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="bg-white py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3 class="text-success mb-3">📋 Buy Tickets in 3 Easy Steps</h3>
+            <p class="text-muted">Quick, simple, and hassle-free booking process</p>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-deck mb-3 text-center">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header bg-success text-light">
+                            <h4 class="my-0 font-weight-normal bg-success">Step 1: Search</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">📍 <small class="text-muted"></small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Enter your pickup city</li>
+                                <li>Enter your destination</li>
+                                <li>Select your travel date</li>
+                                <li>Choose bus type (AC/Non-AC)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header bg-success text-light">
+                            <h4 class="my-0 font-weight-normal bg-success">Step 2: Select</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">🚌 <small class="text-muted"></small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Browse available buses</li>
+                                <li>Check departure times</li>
+                                <li>View ticket prices</li>
+                                <li>Choose your preferred bus</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-header bg-success">
+                            <h4 class="my-0 font-weight-normal bg-success text-light">Step 3: Book & Pay</h4>
+                        </div>
+                        <div class="card-body">
+                            <h1 class="card-title pricing-card-title">💳 <small class="text-muted"></small></h1>
+                            <ul class="list-unstyled mt-3 mb-4">
+                                <li>Select your seat</li>
+                                <li>Enter passenger details</li>
+                                <li>Complete secure payment</li>
+                                <li>Get instant confirmation</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-sm-12 bg-success">
+                <div class="bg-success text-center text-light py-5">
+                    <h4 class="mb-3">🔒 Safe & Secure Payment</h4>
+                    <p class="mb-2">✓ 256-bit SSL Encryption | ✓ PCI Compliant | ✓ 100% Secure Transactions</p>
+                    <p class="small">Your payment information is protected with industry-leading security standards</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
