@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %} My Tickets {% endblock %}
+
+{% block content %}
+
+<div class="py-4" style="background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);">
+    <div class="container">
+        <div class="text-center text-white">
+            <h2 class="font-weight-bold mb-2">🎫 My Tickets</h2>
+            <p class="mb-0">Find and manage your bookings instantly</p>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <div class="card shadow-lg">
+                <div class="card-body p-5">
+                    <h5 class="card-title text-success font-weight-bold mb-4">Enter Phone Number</h5>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="phoneNumber" class="font-weight-bold">Mobile Number</label>
+                            <div class="input-group input-group-lg">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-success text-white">📱</span>
+                                </div>
+                                <input type="tel" class="form-control" id="phoneNumber" name="phone"
+                                    placeholder="Enter 10-digit phone number" maxlength="10" minlength="10" required>
+                            </div>
+                            <small class="form-text text-muted">We'll fetch all your booked tickets</small>
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg btn-block font-weight-bold">
+                            🔍 Search Tickets
+                        </button>
+                    </form>
+                    <hr class="my-4">
+                    <div class="text-center">
+                        <small class="text-muted d-block mb-2">Quick Actions:</small>
+                        <a href="{{url_for('set_cookie')}}" class="btn btn-sm btn-outline-success mx-1">
+                            <span>✓</span> Save Number
+                        </a>
+                        <a href="{{url_for('get_cookie')}}" class="btn btn-sm btn-outline-success mx-1">
+                            <span>📋</span> Load Saved
+                        </a>
+                        <a href="{{url_for('delete_cookie')}}" class="btn btn-sm btn-outline-danger mx-1">
+                            <span>✕</span> Clear
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

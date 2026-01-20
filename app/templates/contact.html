@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% block title %} Contact Us {% endblock %}
+
+{% block content %}
+
+<!-- Header Section -->
+<div class="py-4" style="background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);">
+    <div class="container">
+        <div class="text-center text-white">
+            <h2 class="font-weight-bold mb-2">📞 Get In Touch</h2>
+            <p class="mb-0">We're here to help! Reach out to us anytime</p>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Form & Info Section -->
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Form -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="text-success font-weight-bold mb-4">Send us a Message</h5>
+                        <form method="POST" action="#">
+                            <div class="form-group">
+                                <label for="name" class="font-weight-bold">Full Name</label>
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email" class="font-weight-bold">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone" class="font-weight-bold">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="subject" class="font-weight-bold">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="What is this about?" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message" class="font-weight-bold">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="5" placeholder="Type your message here..." required></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-success btn-block font-weight-bold py-2">
+                                ✉️ Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body p-4">
+                        <h5 class="text-success font-weight-bold mb-4">Contact Information</h5>
+                        
+                        <!-- Phone -->
+                        <div class="mb-4">
+                            <h6 class="font-weight-bold">📞 Phone</h6>
+                            <p class="text-muted mb-0">
+                                <a href="tel:+18008272665" class="text-decoration-none">+1 (800) 827-7665</a>
+                            </p>
+                            <small class="text-muted">Available 24/7</small>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <h6 class="font-weight-bold">✉️ Email</h6>
+                            <p class="text-muted mb-0">
+                                <a href="mailto:support@standt.com" class="text-decoration-none">support@standt.com</a>
+                            </p>
+                            <small class="text-muted">Response within 2 hours</small>
+                        </div>
+
+                        <!-- Address -->
+                        <div class="mb-4">
+                            <h6 class="font-weight-bold">📍 Address</h6>
+                            <p class="text-muted mb-0">
+                                ST&T Bus Services<br>
+                                123 Bus Street<br>
+                                Travel City, TC 12345
+                            </p>
+                        </div>
+
+                        <!-- Hours -->
+                        <div class="mb-4">
+                            <h6 class="font-weight-bold">🕐 Working Hours</h6>
+                            <p class="text-muted mb-0">
+                                Monday - Friday: 6:00 AM - 9:00 PM<br>
+                                Saturday: 9:00 AM - 6:00 PM<br>
+                                Sunday: 10:00 AM - 5:00 PM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Support -->
+                <div class="card shadow-sm border-0" style="background-color: #f0f8f5;">
+                    <div class="card-body p-4">
+                        <h6 class="text-success font-weight-bold mb-3">⚡ Quick Support</h6>
+                        <button class="btn btn-outline-success btn-block mb-2 text-left">
+                            🎫 Track Your Booking
+                        </button>
+                        <button class="btn btn-outline-success btn-block mb-2 text-left">
+                            💰 Refund Status
+                        </button>
+                        <button class="btn btn-outline-success btn-block text-left">
+                            ❓ Frequently Asked Questions
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Map Section (Optional) -->
+<div class="py-5">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h4 class="text-success font-weight-bold">Find Us Here</h4>
+        </div>
+        <div class="row">
+            <div class="col-12">
+               <!-- <iframe class="w-100" src="https://www.google.com/maps/@19.4774856,75.3885323,18.5z?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA2N0gBUAM%3D" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

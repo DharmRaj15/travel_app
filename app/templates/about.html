@@ -1,0 +1,224 @@
+{% extends "base.html" %}
+
+{% block title %} About Us {% endblock %}
+
+{% block content %}
+
+<!-- Header Section -->
+<div class="py-4" style="background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);">
+    <div class="container">
+        <div class="text-center text-white">
+            <h2 class="font-weight-bold mb-2">🚌 About ST&T Bus Services</h2>
+            <p class="mb-0">India's Newest & Most Reliable Bus Service</p>
+        </div>
+    </div>
+</div>
+
+<!-- Hero Section -->
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h3 class="text-success font-weight-bold mb-3">🌟 Welcome to ST&T</h3>
+                <p class="lead mb-3">We are a brand new bus service dedicated to revolutionizing travel across India with reliability, comfort, and punctuality at our core.</p>
+                <p class="text-muted mb-3">Launched in 2024, ST&T (Safe Travel & Transport) started with a mission to provide the best bus travel experience to passengers nationwide. Every journey matters to us, and we make sure you reach on time, every time.</p>
+                
+                <div class="alert alert-success border-0" role="alert">
+                    <h6 class="font-weight-bold mb-2">✨ Our Promise</h6>
+                    <p class="mb-0">⏰ <strong>100% On-Time Guarantee</strong> - We are committed to punctuality above everything else</p>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="{{ url_for('static', filename='img/travler.jpeg') }}" alt="About ST&T Bus Services" style="width: inherit;" class="img-fluid rounded shadow" >
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Why Choose Us -->
+<div class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3 class="text-success font-weight-bold">Why Choose ST&T?</h3>
+            <p class="text-muted">Here's what makes us different from the rest</p>
+        </div>
+
+        <div class="row">
+            <!-- Feature 1 -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body p-4">
+                        <h1 class="mb-3" style="font-size: 50px;">⏰</h1>
+                        <h6 class="font-weight-bold text-success">Punctual Service</h6>
+                        <p class="text-muted small">We guarantee on-time arrivals. Your time is precious to us.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body p-4">
+                        <h1 class="mb-3" style="font-size: 50px;">🛡️</h1>
+                        <h6 class="font-weight-bold text-success">Safety First</h6>
+                        <p class="text-muted small">Latest GPS tracking & trained drivers ensure your complete safety.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body p-4">
+                        <h1 class="mb-3" style="font-size: 50px;">💺</h1>
+                        <h6 class="font-weight-bold text-success">Premium Comfort</h6>
+                        <p class="text-muted small">Modern AC buses with spacious seats & entertainment systems.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 4 -->
+            <div class="col-md-6 col-lg-3 mb-4">
+                <div class="card shadow-sm border-0 text-center">
+                    <div class="card-body p-4">
+                        <h1 class="mb-3" style="font-size: 50px;">💰</h1>
+                        <h6 class="font-weight-bold text-success">Best Prices</h6>
+                        <p class="text-muted small">Affordable fares without compromising on quality or service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="py-5 bg-success text-white">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <h2 class="font-weight-bold mb-2">500+</h2>
+                <p class="mb-0">Routes Covered</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h2 class="font-weight-bold mb-2">50,000+</h2>
+                <p class="mb-0">Happy Passengers</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h2 class="font-weight-bold mb-2">100+</h2>
+                <p class="mb-0">Modern Buses</p>
+            </div>
+            <div class="col-md-3 mb-4">
+                <h2 class="font-weight-bold mb-2">99.8%</h2>
+                <p class="mb-0">On-Time Rate</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Our Journey -->
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h3 class="text-success font-weight-bold">Our Journey</h3>
+            <p class="text-muted">From launch to becoming India's most trusted new bus service</p>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="text-success font-weight-bold">🚀 2024 - Launch</h5>
+                        <p class="text-muted small">ST&T was founded with a vision to transform bus travel with modern technology and punctuality.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="text-success font-weight-bold">📈 2024 - Expansion</h5>
+                        <p class="text-muted small">Rapidly expanded to 500+ routes across major cities with over 50,000 satisfied passengers.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="text-success font-weight-bold">⭐ Present - Leader</h5>
+                        <p class="text-muted small">Now recognized as India's most reliable new bus service with 99.8% on-time performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Mission & Values -->
+<div class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Mission -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="text-success font-weight-bold mb-3">🎯 Our Mission</h5>
+                        <p class="text-muted">To provide safe, comfortable, and punctual bus travel to every passenger while maintaining the highest standards of service quality. We believe that every journey should be reliable and memorable.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Vision -->
+            <div class="col-lg-6 mb-4">
+                <div class="card shadow-sm border-0">
+                    <div class="card-body p-4">
+                        <h5 class="text-success font-weight-bold mb-3">👁️ Our Vision</h5>
+                        <p class="text-muted">To become India's most trusted and modern bus service provider, setting new standards for punctuality, comfort, and customer service in the transportation industry.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Values -->
+        <div class="row mt-4">
+            <div class="col-12">
+                <h5 class="text-success font-weight-bold mb-4">💎 Our Core Values</h5>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <h6 class="font-weight-bold">⏰ Punctuality</h6>
+                            <p class="text-muted small">On-time is our promise</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <h6 class="font-weight-bold">🛡️ Safety</h6>
+                            <p class="text-muted small">Your safety is paramount</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <h6 class="font-weight-bold">😊 Customer Care</h6>
+                            <p class="text-muted small">Your satisfaction matters</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="bg-light p-3 rounded">
+                            <h6 class="font-weight-bold">🌱 Innovation</h6>
+                            <p class="text-muted small">Modern & forward-thinking</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Call to Action -->
+<div class="py-5 bg-success text-white text-center">
+    <div class="container">
+        <h3 class="font-weight-bold mb-3">Ready to Experience Reliable Travel?</h3>
+        <p class="lead mb-4">Book your tickets now and join thousands of happy passengers</p>
+        <a href="{{url_for('index')}}" class="btn btn-light btn-lg font-weight-bold">🎫 Book Your Ticket Now</a>
+    </div>
+</div>
+
+{% endblock %}

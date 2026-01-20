@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %} Home Page{% endblock %}
+
+{% block content %}
+
+    <div class="form-container">
+        <h2>Book Your Seat</h2>
+        <form action="/register" method="POST">
+            <div class="field">
+                <label>Full Name (as per Govt ID)</label>
+                <input type="text" name="full_name" required>
+            </div>
+            <div class="field">
+                <label>Email Address</label>
+                <input type="email" name="email" required>
+            </div>
+            <div class="field">
+                <label>Phone Number</label>
+                <input type="text" name="phone">
+            </div>
+            <div class="field">
+                <label>Date of Birth</label>
+                <input type="date" name="dbo">
+            </div>
+            <div class="field">
+                <label>Gender</label>
+                <select name="gender">
+                    <option value="m">Male</option>
+                    <option value="f">Female</option>
+                    <option value="o">Other</option>
+                </select>
+            </div>
+            <button type="submit">Confirm & Register</button>
+
+            <div class="ticket">
+
+                <div class="container mt-4">
+                    <h2 class="mb-3">Registered Users</h2>
+                    <table class="table table-bordered table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>UserID</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>DOB</th>
+                                <th>Gender</th>
+                            </tr>
+                        </thead>
+                        <tbody> {% for user in users %} 
+                            <tr>
+                                <td>{{ user.id }}</td>
+                                <td>{{ user.full_name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.phone }}</td>
+                                <td>{{ user.dbo }}</td>
+                                <td>{{ user.gender }}</td>
+                            </tr> {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </form>
+{% endblock %}

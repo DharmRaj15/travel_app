@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+
+<!-- Header Section -->
+<div class="py-4" style="background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);">
+    <div class="container">
+        <div class="text-center text-white">
+            <h2 class="font-weight-bold mb-2">🔐 Login to Your Account</h2>
+            <p class="mb-0">Access your tickets and bookings</p>
+        </div>
+    </div>
+</div>
+
+<!-- Login Form Section -->
+<div class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-5">
+                <div class="card shadow-lg border-0">
+                    <div class="card-body p-5">
+                        <h5 class="text-success font-weight-bold mb-4">Welcome Back!</h5>
+                        
+                        <form method="POST" action="{{ url_for('login') }}">
+                            <!-- Email -->
+                            <div class="form-group">
+                                <label for="email" class="font-weight-bold">📧 Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" 
+                                    placeholder="Enter your email" required>
+                                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-group">
+                                <label for="password" class="font-weight-bold">🔒 Password</label>
+                                <input type="password" class="form-control" id="password" name="password" 
+                                    placeholder="Enter your password" required>
+                            </div>
+
+                            <!-- Remember Me -->
+                            <div class="form-group form-check">
+                                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                                <label class="form-check-label" for="remember">Remember me</label>
+                            </div>
+
+                            <!-- Login Button -->
+                            <button type="submit" class="btn btn-success btn-block font-weight-bold py-2">
+                                ✓ Login
+                            </button>
+                        </form>
+
+                        <!-- Divider -->
+                        <hr class="my-4">
+
+                        <!-- Register Link -->
+                        <p class="text-center text-muted mb-0">
+                            Don't have an account? 
+                            <a href="{{url_for('register')}}" class="text-success font-weight-bold">Register Here</a>
+                        </p>
+                        <p class="text-center text-muted mt-3">
+                            <a href="#" class="text-muted small">Forgot Password?</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
