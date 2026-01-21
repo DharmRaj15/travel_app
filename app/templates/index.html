@@ -62,15 +62,15 @@
 
                                 <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
                                     <label class="small text-muted font-weight-bold">Date</label>
-                                    <input type="date" class="form-control" id="travelDate" name="traveldate">
+                                    <input type="date" class="form-control" id="traveldate" name="traveldate">
                                 </div>
 
                                 <div class="col-lg-2 col-md-6 col-sm-12 mb-3">
                                     <label class="small text-muted font-weight-bold">Bus Type</label>
-                                    <select class="form-control" name="bustype">
-                                        <option value="0" selected disabled>Select Bus Type</option>
+                                    <select class="form-control" name="bustype" id="bustype">
+                                        <option value="0">Select Bus Type</option>
                                         {% for b in bus %}
-                                        <option value="{{ b.id }}">{{ b.type }}</option>
+                                        <option value="{{ b.vehicle_id }}">{{ b.type }}</option>
                                         {% endfor %}
                                     </select>
                                 </div>

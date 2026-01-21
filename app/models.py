@@ -29,7 +29,7 @@ class Vehicles(db.Model):
     def __repr__(self):
         return f'<Vehicles {self.vehicle_number}>'
     
-class route(db.Model):
+class Route(db.Model):
     __tablename__ = 'Routes'
     route_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     origin = db.Column(db.String(80), nullable=False)
@@ -50,7 +50,7 @@ class schedules(db.Model):
     arrival_time = db.Column(db.String(20), nullable=False)
 
     vehicle = db.relationship('Vehicles', backref=db.backref('schedules', lazy=True))
-    route = db.relationship('route', backref=db.backref('schedules', lazy=True))
+    route = db.relationship('Route', backref=db.backref('schedules', lazy=True))
 
     def __repr__(self):
         return f'<Schedules Vehicle {self.vehicle_id} on Route {self.route_id}>'

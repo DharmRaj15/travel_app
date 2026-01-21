@@ -1,6 +1,7 @@
 import os
 from flask import current_app, jsonify, render_template, request, session
-from app.models import schedules, user, Vehicles, route
+from sqlalchemy import cast,Date
+from app.models import schedules, user, Vehicles, Route
 from app import db
 from datetime import datetime
 
@@ -10,7 +11,7 @@ def register_routes(app):
     @app.route('/', methods=['GET', 'POST'])
     def index():
         vehicles_list = Vehicles.query.all()
-        routes_list = route.query.all()
+        routes_list = Route.query.all()
 
         # Initialize result as None
         route_obj = None
@@ -18,8 +19,16 @@ def register_routes(app):
         if request.method == 'POST':
             pickup = request.form.get('pickup')
             destination = request.form.get('destination')
-            travel_date = request.form.get('travelDate')
-            route_obj = route.query.filter_by(origin = pickup, destination = destination).first()
+            travel_date = request.form.get('traveldate')
+            bustype = request.form.get('bustype')
+            # route_obj = route.query.filter_by(origin = pickup, destination = destination).first()
+            route_obj = db.session.query(schedules).join(Route).join(Vehicles).filter(
+                Route.origin == pickup,
+                Route.destination == destination,
+                # This line tells the DB: "Extract only the DATE part of the column"
+                cast(schedules.departure_time, Date) == travel_date,
+                Vehicles.vehicle_id == bustype
+                ).all()
             if route_obj:
                 # return f"Route found from {pickup} to {destination} on {travel_date}"
                 return render_template('index.html', bus = vehicles_list, routes = routes_list, search_result=route_obj)
