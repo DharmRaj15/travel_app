@@ -108,7 +108,14 @@
                         <h5 class="card-title font-weight-bold">{{ r.origin }} ➔ {{ r.destination }}</h5>
                         <p class="card-text text-muted">Distance: {{ r.distance_km }} km</p>
                         <p class="card-text text-muted">Duration: {{ r.estimated_time }}</p>
-                        <a href="#" class="btn btn-success btn-block font-weight-bold">Book Now</a>
+                        <p class="card-text text-muted">Departure: {{ r.departure_time }} | Arrival: {{ r.arrival_time
+                            }}</p>
+                        <p class="card-text text-success font-weight-bold">Price: ₹{{ r.price }}</p>
+                        <p class="card-text text-muted">Bus Type: {{ r.type }}</p>
+                        <p class="card-text text-muted">Available Seats: {{ r.capacity }}</p>
+                     
+                        <a href="{{url_for('seatlayout')}}" class="btn btn-warning btn-block font-weight-bold">Book Now</a>
+
                     </div>
                 </div>
             </div>

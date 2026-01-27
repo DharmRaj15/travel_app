@@ -33,7 +33,7 @@ def register_routes(app):
                 # return f"Route found from {pickup} to {destination} on {travel_date}"
                 return render_template('index.html', bus = vehicles_list, routes = routes_list, search_result=route_obj)
             else:
-                return "No matching route found."        
+                return render_template('index.html', bus = vehicles_list, routes = routes_list, search_result=route_obj)
         elif request.method == 'GET':
             return render_template('index.html', bus = vehicles_list, routes = routes_list)
 
