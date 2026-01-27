@@ -22,13 +22,19 @@ def register_routes(app):
             travel_date = request.form.get('traveldate')
             bustype = request.form.get('bustype')
             # route_obj = route.query.filter_by(origin = pickup, destination = destination).first()
-            route_obj = db.session.query(schedules).join(Route).join(Vehicles).filter(
+            # route_obj = db.session.query(schedules).join(Route).join(Vehicles).filter(
+            #     Route.origin == pickup,
+            #     Route.destination == destination,
+            #     # This line tells the DB: "Extract only the DATE part of the column"
+            #     cast(schedules.departure_time, Date) == travel_date,
+            #     Vehicles.vehicle_id == bustype
+            #     ).all()
+            bus_searchQuery = db.session.query(schedules, Route, Vehicles).join(Route).join(Vehicles).filter(
                 Route.origin == pickup,
                 Route.destination == destination,
-                # This line tells the DB: "Extract only the DATE part of the column"
                 cast(schedules.departure_time, Date) == travel_date,
-                Vehicles.vehicle_id == bustype
-                ).all()
+                Vehicles.vehicle_id == bustype)
+            route_obj = bus_searchQuery.all()
             if route_obj:
                 # return f"Route found from {pickup} to {destination} on {travel_date}"
                 return render_template('index.html', bus = vehicles_list, routes = routes_list, search_result=route_obj)
