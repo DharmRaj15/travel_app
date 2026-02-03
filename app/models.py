@@ -1,3 +1,4 @@
+from datetime import datetime
 from app import db
 
 
@@ -54,3 +55,17 @@ class schedules(db.Model):
 
     def __repr__(self):
         return f'<Schedules Vehicle {self.vehicle_id} on Route {self.route_id}>'
+    
+class Booking(db.Model):
+    __tablename__ = 'Bookings'
+    booking_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    schedule_id = db.Column(db.Integer, db.ForeignKey('Schedules.schedule_id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('register.id'), nullable=False)
+    seat_number = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+
+    schedule = db.relationship('schedules', backref=db.backref('bookings', lazy=True))
+    user = db.relationship('user', backref=db.backref('bookings', lazy=True))
+
+    def __repr__(self):
+        return f'<Booking {self.booking_id} for Schedule {self.schedule_id}>'

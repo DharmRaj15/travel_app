@@ -1,7 +1,7 @@
 import os
-from flask import current_app, jsonify, render_template, request, session
+from flask import current_app, flash, jsonify, redirect, render_template, request, session, url_for
 from sqlalchemy import cast,Date
-from app.models import schedules, user, Vehicles, Route
+from app.models import Booking, schedules, user, Vehicles, Route
 from app import db
 from datetime import datetime
 
@@ -21,25 +21,15 @@ def register_routes(app):
             destination = request.form.get('destination')
             travel_date = request.form.get('traveldate')
             bustype = request.form.get('bustype')
-            # route_obj = route.query.filter_by(origin = pickup, destination = destination).first()
-            # route_obj = db.session.query(schedules).join(Route).join(Vehicles).filter(
-            #     Route.origin == pickup,
-            #     Route.destination == destination,
-            #     # This line tells the DB: "Extract only the DATE part of the column"
-            #     cast(schedules.departure_time, Date) == travel_date,
-            #     Vehicles.vehicle_id == bustype
-            #     ).all()
+           
             bus_searchQuery = db.session.query(schedules, Route, Vehicles).join(Route).join(Vehicles).filter(
                 Route.origin == pickup,
                 Route.destination == destination,
                 cast(schedules.departure_time, Date) == travel_date,
                 Vehicles.vehicle_id == bustype)
             route_obj = bus_searchQuery.all()
-            if route_obj:
-                # return f"Route found from {pickup} to {destination} on {travel_date}"
-                return render_template('index.html', bus = vehicles_list, routes = routes_list, search_result=route_obj)
-            else:
-                return render_template('index.html', bus = vehicles_list, routes = routes_list, search_result=route_obj)
+            return render_template('index.html', bus = vehicles_list, routes = routes_list, search_result=route_obj)
+        
         elif request.method == 'GET':
             return render_template('index.html', bus = vehicles_list, routes = routes_list)
 
@@ -85,6 +75,7 @@ def register_routes(app):
             user_obj = user.query.filter_by(email=email, password=password).first()
             if user_obj:
                 session['name'] = user_obj.full_name
+                session['user_id'] = user_obj.id  # Store user ID in session
                 return render_template('index.html')
             else:
                 return "Invalid credentials, please try again.", 401
@@ -144,3 +135,30 @@ def register_routes(app):
     @app.route('/delete-cookie')
     def delete_cookie():
         return "Cookie deleted!"
+    
+    ### bookings routes ###
+    @app.route('/confirm_booking/<int:schedule_id>', methods=['POST', 'GET'])
+    def confirm_booking(schedule_id):
+        # 1. Get the string "1,2,5" from the form
+        seats_string = request.form.get('selected_seats_list')
+        if not seats_string:
+            flash("Please select at least one seat!")
+            return redirect(url_for('seatlayout', schedule_id=schedule_id))
+        # 2. Convert string to list of integers [1, 2, 5]
+        seat_list = [int(s) for s in seats_string.split(',')]
+        try:
+            for seat_no in seat_list:
+                # 3. Create a new row for every seat selected
+                new_booking = Booking(
+                    schedule_id=schedule_id,
+                    user_id=session.get('user_id'), # Assuming user_id is stored in session
+                    seat_id=seat_no,
+                    status='Confirmed'
+                )
+                db.session.add(new_booking)
+                # 4. Save all rows at once
+                db.session.commit()
+                return redirect(url_for('my_bookings')) # Send them to a "Thank You" or "My Bookings" page
+        except Exception as e:
+                db.session.rollback() # If something fails, don't save anything
+                return redirect(url_for('seatlayout', schedule_id=schedule_id))

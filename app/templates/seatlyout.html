@@ -16,111 +16,123 @@
 
 <!-- Main Content -->
 <div class="py-5 bg-light">
-    <div class="container">
+    <d class="container">
         <div class="row">
             <!-- Seat Layout Section -->
             <div class="col-lg-8">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body p-4">
-                        <div class="d-flex justify-content-between align-items-center mb-4">
-                            <h5 class="text-success font-weight-bold mb-0">Bus Seat Layout</h5>
-                            <small class="text-muted">Click on seats to select/deselect</small>
-                        </div>
-
-                        <!-- Seat Layout -->
-                        <div class="seat-layout" style="background: #f8f9fa; padding: 20px; border-radius: 8px; overflow-x: auto;">
-                            <!-- Driver Area -->
-                            <div class="text-center mb-4">
-                                <div style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; border-radius: 5px; font-weight: bold; font-size: 12px;">
-                                    🚗 DRIVER
-                                </div>
+                <form action="{{ url_for('confirm_booking', schedule_id=request.args.get('schedule_id')) }}"
+                    method="POST">
+                    <div class="card shadow-sm border-0">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h5 class="text-success font-weight-bold mb-0">Bus Seat Layout</h5>
+                                <small class="text-muted">Click on seats to select/deselect</small>
                             </div>
 
-                            <!-- Seats Grid -->
-                            <div style="display: grid; grid-template-columns: repeat(6, 50px); gap: 15px; justify-content: center;">
-                                <!-- Row 1 -->
-                                <div class="seat empty" data-seat="A1" style="grid-column: 1;"></div>
-                                <div class="seat empty" data-seat="A2" style="grid-column: 2;"></div>
-                                <div style="grid-column: 3;"></div>
-                                <div style="grid-column: 4;"></div>
-                                <div class="seat empty" data-seat="A5" style="grid-column: 5;"></div>
-                                <div class="seat empty" data-seat="A6" style="grid-column: 6;"></div>
-
-                                <!-- Row 2 -->
-                                <div class="seat empty" data-seat="B1"></div>
-                                <div class="seat empty" data-seat="B2"></div>
-                                <div style=""></div>
-                                <div style=""></div>
-                                <div class="seat empty" data-seat="B5"></div>
-                                <div class="seat empty" data-seat="B6"></div>
-
-                                <!-- Row 3 -->
-                                <div class="seat empty" data-seat="C1"></div>
-                                <div class="seat empty" data-seat="C2"></div>
-                                <div style=""></div>
-                                <div style=""></div>
-                                <div class="seat empty" data-seat="C5"></div>
-                                <div class="seat empty" data-seat="C6"></div>
-
-                                <!-- Row 4 -->
-                                <div class="seat empty" data-seat="D1"></div>
-                                <div class="seat empty" data-seat="D2"></div>
-                                <div style=""></div>
-                                <div style=""></div>
-                                <div class="seat empty" data-seat="D5"></div>
-                                <div class="seat empty" data-seat="D6"></div>
-
-                                <!-- Row 5 -->
-                                <div class="seat empty" data-seat="E1"></div>
-                                <div class="seat empty" data-seat="E2"></div>
-                                <div style=""></div>
-                                <div style=""></div>
-                                <div class="seat empty" data-seat="E5"></div>
-                                <div class="seat empty" data-seat="E6"></div>
-
-                                <!-- Row 6 -->
-                                <div class="seat empty" data-seat="F1"></div>
-                                <div class="seat empty" data-seat="F2"></div>
-                                <div style=""></div>
-                                <div style=""></div>
-                                <div class="seat empty" data-seat="F5"></div>
-                                <div class="seat empty" data-seat="F6"></div>
-
-                                <!-- Row 7 -->
-                                <div class="seat empty" data-seat="G1"></div>
-                                <div class="seat empty" data-seat="G2"></div>
-                                <div style=""></div>
-                                <div style=""></div>
-                                <div class="seat empty" data-seat="G5"></div>
-                                <div class="seat empty" data-seat="G6"></div>
-
-                                <!-- Row 8 -->
-                                <div class="seat empty" data-seat="H1"></div>
-                                <div class="seat empty" data-seat="H2"></div>
-                                <div class="seat empty" data-seat="H3"></div>
-                                <div class="seat empty" data-seat="H4"></div>
-                                <div class="seat empty" data-seat="H5"></div>
-                                <div class="seat empty" data-seat="H6"></div>
-                            </div>
-
-                            <!-- Legend -->
-                            <div class="d-flex justify-content-center gap-4 mt-5 flex-wrap">
-                                <div class="d-flex align-items-center">
-                                    <div class="seat-legend empty-legend" style="width: 30px; height: 30px; border: 2px solid #ddd; border-radius: 4px; margin-right: 8px;"></div>
-                                    <small>Available</small>
+                            <!-- Seat Layout -->
+                            <div class="seat-layout"
+                                style="background: #f8f9fa; padding: 20px; border-radius: 8px; overflow-x: auto;">
+                                <!-- Driver Area -->
+                                <div class="text-center mb-4">
+                                    <div
+                                        style="display: inline-block; padding: 10px 20px; background: #28a745; color: white; border-radius: 5px; font-weight: bold; font-size: 12px;">
+                                        🚗 DRIVER
+                                    </div>
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="seat-legend selected-legend" style="width: 30px; height: 30px; background: #28a745; border-radius: 4px; margin-right: 8px;"></div>
-                                    <small>Selected</small>
+
+                                <!-- Seats Grid -->
+                                <div
+                                    style="display: grid; grid-template-columns: repeat(6, 50px); gap: 15px; justify-content: center;">
+                                    <!-- Row 1 -->
+                                    <div class="seat empty" data-seat="A1" style="grid-column: 1;"></div>
+                                    <div class="seat empty" data-seat="A2" style="grid-column: 2;"></div>
+                                    <div style="grid-column: 3;"></div>
+                                    <div style="grid-column: 4;"></div>
+                                    <div class="seat empty" data-seat="A5" style="grid-column: 5;"></div>
+                                    <div class="seat empty" data-seat="A6" style="grid-column: 6;"></div>
+
+                                    <!-- Row 2 -->
+                                    <div class="seat empty" data-seat="B1"></div>
+                                    <div class="seat empty" data-seat="B2"></div>
+                                    <div style=""></div>
+                                    <div style=""></div>
+                                    <div class="seat empty" data-seat="B5"></div>
+                                    <div class="seat empty" data-seat="B6"></div>
+
+                                    <!-- Row 3 -->
+                                    <div class="seat empty" data-seat="C1"></div>
+                                    <div class="seat empty" data-seat="C2"></div>
+                                    <div style=""></div>
+                                    <div style=""></div>
+                                    <div class="seat empty" data-seat="C5"></div>
+                                    <div class="seat empty" data-seat="C6"></div>
+
+                                    <!-- Row 4 -->
+                                    <div class="seat empty" data-seat="D1"></div>
+                                    <div class="seat empty" data-seat="D2"></div>
+                                    <div style=""></div>
+                                    <div style=""></div>
+                                    <div class="seat empty" data-seat="D5"></div>
+                                    <div class="seat empty" data-seat="D6"></div>
+
+                                    <!-- Row 5 -->
+                                    <div class="seat empty" data-seat="E1"></div>
+                                    <div class="seat empty" data-seat="E2"></div>
+                                    <div style=""></div>
+                                    <div style=""></div>
+                                    <div class="seat empty" data-seat="E5"></div>
+                                    <div class="seat empty" data-seat="E6"></div>
+
+                                    <!-- Row 6 -->
+                                    <div class="seat empty" data-seat="F1"></div>
+                                    <div class="seat empty" data-seat="F2"></div>
+                                    <div style=""></div>
+                                    <div style=""></div>
+                                    <div class="seat empty" data-seat="F5"></div>
+                                    <div class="seat empty" data-seat="F6"></div>
+
+                                    <!-- Row 7 -->
+                                    <div class="seat empty" data-seat="G1"></div>
+                                    <div class="seat empty" data-seat="G2"></div>
+                                    <div style=""></div>
+                                    <div style=""></div>
+                                    <div class="seat empty" data-seat="G5"></div>
+                                    <div class="seat empty" data-seat="G6"></div>
+
+                                    <!-- Row 8 -->
+                                    <div class="seat empty" data-seat="H1"></div>
+                                    <div class="seat empty" data-seat="H2"></div>
+                                    <div class="seat empty" data-seat="H3"></div>
+                                    <div class="seat empty" data-seat="H4"></div>
+                                    <div class="seat empty" data-seat="H5"></div>
+                                    <div class="seat empty" data-seat="H6"></div>
                                 </div>
-                                <div class="d-flex align-items-center">
-                                    <div class="seat-legend booked-legend" style="width: 30px; height: 30px; background: #dc3545; border-radius: 4px; margin-right: 8px;"></div>
-                                    <small>Booked</small>
+
+                                <!-- Legend -->
+                                <div class="d-flex justify-content-center gap-4 mt-5 flex-wrap">
+                                    <div class="d-flex align-items-center">
+                                        <div class="seat-legend empty-legend"
+                                            style="width: 30px; height: 30px; border: 2px solid #ddd; border-radius: 4px; margin-right: 8px;">
+                                        </div>
+                                        <small>Available</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="seat-legend selected-legend"
+                                            style="width: 30px; height: 30px; background: #28a745; border-radius: 4px; margin-right: 8px;">
+                                        </div>
+                                        <small>Selected</small>
+                                    </div>
+                                    <div class="d-flex align-items-center">
+                                        <div class="seat-legend booked-legend"
+                                            style="width: 30px; height: 30px; background: #dc3545; border-radius: 4px; margin-right: 8px;">
+                                        </div>
+                                        <small>Booked</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
 
             <!-- Booking Summary Section -->
@@ -132,7 +144,8 @@
                         <!-- Selected Seats Display -->
                         <div class="alert alert-info border-0" role="alert">
                             <h6 class="font-weight-bold mb-2">Selected Seats</h6>
-                            <div id="selectedSeatsDisplay" class="text-center" style="min-height: 30px; padding: 10px; background: white; border-radius: 4px;">
+                            <div id="selectedSeatsDisplay" class="text-center"
+                                style="min-height: 30px; padding: 10px; background: white; border-radius: 4px;">
                                 <small class="text-muted">No seats selected</small>
                             </div>
                         </div>
@@ -168,9 +181,9 @@
                             <p class="mb-1"><small><strong>Date:</strong> 2024-01-20</small></p>
                             <p class="mb-0"><small><strong>Time:</strong> 10:00 PM</small></p>
                         </div>
-
+                        <input type="hidden" name="selected_seats_list" id="input_seats" value="">
                         <!-- Action Buttons -->
-                        <button class="btn btn-success btn-block font-weight-bold py-2 mb-2" id="proceedBtn" disabled>
+                        <button class="btn btn-success btn-block font-weight-bold py-2 mb-2" id="proceedBtn" type="submit">
                             ✓ Proceed to Payment
                         </button>
                         <button class="btn btn-outline-secondary btn-block font-weight-bold py-2">
@@ -180,7 +193,8 @@
                 </div>
             </div>
         </div>
-    </div>
+
+</div>
 </div>
 
 <!-- CSS Styles -->
@@ -240,11 +254,11 @@
     const seatCountDisplay = document.getElementById('seatCount');
     const totalPriceDisplay = document.getElementById('totalPrice');
     const proceedBtn = document.getElementById('proceedBtn');
-    
+
     let selectedSeats = [];
 
     seats.forEach(seat => {
-        seat.addEventListener('click', function() {
+        seat.addEventListener('click', function () {
             // Don't allow selecting booked seats
             if (this.classList.contains('booked')) {
                 return;
