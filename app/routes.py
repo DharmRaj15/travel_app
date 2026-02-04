@@ -142,8 +142,7 @@ def register_routes(app):
         # 1. Get the string "1,2,5" from the form
         seats_string = request.form.get('selected_seats_list')
         if not seats_string:
-            flash("Please select at least one seat!")
-            return redirect(url_for('seatlayout', schedule_id=schedule_id))
+           return redirect(url_for('seatlayout', schedule_id=schedule_id))
         # 2. Convert string to list of integers [1, 2, 5]
         seat_list = [int(s) for s in seats_string.split(',')]
         try:
@@ -158,7 +157,9 @@ def register_routes(app):
                 db.session.add(new_booking)
                 # 4. Save all rows at once
                 db.session.commit()
-                return redirect(url_for('my_bookings')) # Send them to a "Thank You" or "My Bookings" page
+            return redirect(url_for('my_bookings'))
         except Exception as e:
-                db.session.rollback() # If something fails, don't save anything
-                return redirect(url_for('seatlayout', schedule_id=schedule_id))
+                db.session.rollback()
+                # Print the error to your terminal so you can see why it's failing!
+                print(f"DATABASE ERROR: {e}")
+                return f"An error occurred while processing your booking. Please try again later. Error: {e}", 500
