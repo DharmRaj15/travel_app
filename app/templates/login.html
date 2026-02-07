@@ -23,7 +23,7 @@
                     <div class="card-body p-5">
                         <h5 class="text-success font-weight-bold mb-4">Welcome Back!</h5>
                         
-                        <form method="POST" action="{{ url_for('login') }}">
+                        <form action="{{ url_for('login', next=request.args.get('next')) }}" method="POST"">
                             <!-- Email -->
                             <div class="form-group">
                                 <label for="email" class="font-weight-bold">📧 Email Address</label>

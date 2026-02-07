@@ -1,40 +1,77 @@
- /*search box css start here*/
-        .search-sec {
-            padding: 2rem;
-        }
+/*search box css start here*/
+.search-sec {
+  padding: 2rem;
+}
 
-        .search-slt {
-            display: block;
-            width: 100%;
-            font-size: 1rem;
-            line-height: 1.5;
-            color: #55595c;
-            background-color: #fff;
-            background-image: none;
-            border: 1px solid #ccc;
-            height: calc(3rem + 2px) !important;
-            border-radius: 0;
-        }
+.search-slt {
+  display: block;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #55595c;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  height: calc(3rem + 2px) !important;
+  border-radius: 0;
+}
 
-        .wrn-btn {
-            width: 100%;
-            font-size: 16px;
-            font-weight: 400;
-            text-transform: capitalize;
-            height: calc(3rem + 2px) !important;
-            border-radius: 0;
-        }
+.wrn-btn {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  height: calc(3rem + 2px) !important;
+  border-radius: 0;
+}
 
-        @media (min-width: 992px) {
-            .search-sec {
-                position: relative;
-                top: -114px;
-                background: rgba(26, 70, 104, 0.51);
-            }
-        }
+@media (min-width: 992px) {
+  .search-sec {
+    position: relative;
+    top: -114px;
+    background: rgba(26, 70, 104, 0.51);
+  }
+}
 
-        @media (max-width: 992px) {
-            .search-sec {
-                background: #1A4668;
-            }
-        }
+@media (max-width: 992px) {
+  .search-sec {
+    background: #1a4668;
+  }
+}
+
+/* Floating Flash Messages */
+.flash-container {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  width: 90%;
+  max-width: 500px;
+}
+
+.alert {
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.alert-success {
+  background-color: #28a745;
+  color: white;
+}
+.alert-danger {
+  background-color: #dc3545;
+  color: white;
+}
+.alert-warning {
+  background-color: #ffc107;
+  color: #333;
+}
+.alert-info {
+  background-color: #17a2b8;
+  color: white;
+}

@@ -17,7 +17,7 @@
 <!-- Main Content -->
 <div class="py-5 bg-light">
     <div class="container">
-        <form action="{{ url_for('confirm_booking', schedule_id=request.args.get('schedule_id')) }}" method="POST">
+        <form action="{{ url_for('confirm_booking', schedule_id=schedule.schedule_id)}}" method="POST">
             <div class="row">
                 <!-- Seat Layout Section -->
                 <div class="col-lg-8">
@@ -105,7 +105,28 @@
                                     <div class="seat empty" data-seat="35"></div>
                                     <div class="seat empty" data-seat="36"></div>
                                 </div>
+                                <!-- Seat  -->
+                                <!-----------------------Dynamic seat layout-------------------------------------------------->
+                                <div
+                                    style="display: grid; grid-template-columns: repeat(6, 50px); gap: 15px; justify-content: center;">
 
+                                    {% for seat in seats %}
+                                    {# Basic math to handle the 2-gap-2 layout #}
+                                    {# We use the loop index to determine grid placement #}
+                                    {% set col_pos = ((loop.index0 % 4) + 1) %}
+                                    {% if col_pos > 2 %}
+                                    {% set col_pos = col_pos + 2 %} {# This skips columns 3 and 4 #}
+                                    {% endif %}
+
+                                    <div class="seat-wrapper" style="grid-column: {{ col_pos }};">
+                                        <div class="seat {% if seat.seat_id in booked_seats %}booked{% else %}empty{% endif %} grid-column: {{ col_pos }};"
+                                            data-seat="{{ seat.seat_id }}">
+                                            {{ seat.seat_number }}
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                    <!-------------------------------------------------------------------------------------------->
+                                </div>
                                 <!-- Legend -->
                                 <div class="d-flex justify-content-center gap-4 mt-5 flex-wrap">
                                     <div class="d-flex align-items-center">

@@ -69,3 +69,15 @@ class Booking(db.Model):
 
     def __repr__(self):
         return f'<Booking {self.booking_id} for Schedule {self.schedule_id}>'
+    
+class seats(db.Model):
+    __tablename__ = 'Seats'
+    seat_id = db.Column(db.String(10), primary_key=True)
+    vehicle_id = db.Column(db.Integer, db.ForeignKey('Vehicles.vehicle_id'), nullable=False)
+    seat_number = db.Column(db.String(10), nullable=False)
+    status = db.Column(db.String(20), nullable=False)
+
+    vehicle = db.relationship('Vehicles', backref=db.backref('seats', lazy=True))
+
+    def __repr__(self):
+        return f'<Seats {self.seat_id} in Vehicle {self.vehicle_id}>'

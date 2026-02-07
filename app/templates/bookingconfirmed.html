@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %} Select Seats {% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-success text-white text-center py-4">
+            <h2 class="mb-0">🎉 Booking Confirmed!</h2>
+            <p class="lead">Wish you a happy and safe journey</p>
+        </div>
+        <div class="card-body p-5">
+            <div class="row mb-4">
+                <div class="col-sm-6">
+                    <h5 class="text-muted">Journey Details</h5>
+                    <h4>{{ main.schedule.route.origin }} ➔ {{ main.schedule.route.destination }}</h4>
+                    <p><strong>Date:</strong> {{ main.schedule.departure_time.strftime('%d %b, %Y') }}<br>
+                    <strong>Reporting Time:</strong> {{ main.schedule.departure_time.strftime('%I:%M %p') }}</p>
+                </div>
+                <div class="col-sm-6 text-sm-end">
+                    <h5 class="text-muted">Booking Reference</h5>
+                    <p><strong>User:</strong> {{ session.get('user_name', 'Passenger') }}<br>
+                    <strong>Total Paid:</strong> ₹</p>
+                </div>
+            </div>
+
+            <table class="table table-bordered">
+                <thead class="table-light">
+                    <tr>
+                        <th>Ticket ID</th>
+                        <th>Seat Number</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for b in bookings %}
+                    <tr>
+                        <td>#BK-{{ b.booking_id }}</td>
+                        <td><span class="badge bg-primary">{{ b.seat_id }}</span></td>
+                        <td><span class="text-success font-weight-bold">{{ b.status }}</span></td>
+                        
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="text-center mt-4 no-print">
+                <button onclick="window.print()" class="btn btn-outline-secondary me-2">🖨️ Print Ticket</button>
+                <a href="{{ url_for('index') }}" class="btn btn-primary">Go to My Bookings</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
