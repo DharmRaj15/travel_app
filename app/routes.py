@@ -92,7 +92,7 @@ def register_routes(app):
                 next_page = request.args.get('next')
                 if next_page:
                     return redirect(next_page)
-                return render_template('index.html')
+                return redirect(url_for('index'))
             else:
                 flash("Invalid credentials, please try again.", "danger")
                 return redirect(url_for('login'))
@@ -160,7 +160,7 @@ def register_routes(app):
     @login_required
     def confirm_booking(schedule_id):
         # 1. Get the string "1,2,5" from the form
-        seats_string = request.form.get('selected_seats_list').strip()
+        seats_string = request.form.get('selected_seats_list')
         created_bookings = [] # List to hold our new booking objects
         if not seats_string:
            return redirect(url_for('seatlyout', schedule_id=schedule_id))
